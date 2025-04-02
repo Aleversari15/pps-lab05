@@ -25,13 +25,24 @@ trait Vector2D:
 
 object Vector2D:
   // Factory method to create Vector2D instances
-  def apply(x: Double, y: Double): Vector2D = ???
+  def apply(x: Double, y: Double): Vector2D = Vector2DImpl(x,y)
 
   // Common vectors (optional but nice)
   val zero: Vector2D = apply(0.0, 0.0)
   val i: Vector2D = apply(1.0, 0.0) // Unit vector along x-axis
   val j: Vector2D = apply(0.0, 1.0) // Unit vector along y-axis
 
+  private case class Vector2DImpl(override val x: Double, override val y: Double) extends Vector2D:
+
+    def +(other: Vector2D): Vector2D = Vector2D(x + other.x, y + other.y)
+
+    def -(other: Vector2D): Vector2D = Vector2D(x - other.x, y - other.y)
+
+    def *(scalar: Double): Vector2D = Vector2D(x * scalar, y * scalar)
+
+    def dot(other: Vector2D): Double = x * other.x + y * other.y
+
+    def magnitude: Double = sqrt(x * x + y * y)
 
 /** Hints:
  *   - Implement Vector2D with a Vector2DImpl class.
@@ -44,6 +55,7 @@ object Vector2D:
   val v1 = Vector2D(3.0, 4.0)
   val v2 = Vector2D(-1.0, 2.0)
 
+  //println(s"i vettori sono uguali? ${v1 == Vector2D(3.0,4.0)}" )
   val sum = v1 + v2
   // Expected: (3 + (-1), 4 + 2) = (2.0, 6.0)
   println(s"Sum: $sum, x: ${sum.x}, y: ${sum.y}")
