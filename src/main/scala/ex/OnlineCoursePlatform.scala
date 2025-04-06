@@ -119,17 +119,12 @@ object OnlineCoursePlatform:
 
     override def enrollStudent(studentId: String, courseId: String): Unit = if isCourseAvailable(courseId) then enrollments = enrollments.concat(Sequence.apply((studentId, courseId)))
     //controllare
-    override def unenrollStudent(studentId: String, courseId: String): Unit = enrollments = enrollments.filter(!_.equals((studentId,courseId)))
+    override def unenrollStudent(studentId: String, courseId: String): Unit = enrollments = enrollments.filter(!_.equals((studentId, courseId)))
 
     override def getStudentEnrollments(studentId: String): Sequence[Course] = courses.filter(c => enrollments.filter((s, _) => s.equals(studentId)).map((_, cId) => cId).contains(c.courseId))
 
-    override def isStudentEnrolled(studentId: String, courseId: String): Boolean = enrollments.contains((studentId,courseId))
+    override def isStudentEnrolled(studentId: String, courseId: String): Boolean = enrollments.contains((studentId, courseId))
 
-
-
-
-  
-  
 @main def mainPlatform(): Unit =
   val platform = OnlineCoursePlatform()
 

@@ -46,7 +46,6 @@ object SchoolModel:
             TeacherModel(t.name, t.courses.concat(Sequence(course)))
           else
             t)
-
         SchoolModel.apply(updatedTeachers)
       else
         SchoolModel(Sequence.apply(TeacherModel(teacher.name, Sequence.apply(course))).concat(teachersOfSchool))

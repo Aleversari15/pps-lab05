@@ -23,8 +23,8 @@ private class LogicsImpl(private val size: Int, private val boat: Int) extends L
   private var hit: Sequence[(Int, Int)] = Nil()
 
   def hit(row: Int, col: Int) =
-    if row == boatRow && col >= boatLeftCol && col < (boatLeftCol+boatSize) then
-      hit = hit.concat(Sequence.apply((row,col)))
+    if row == boatRow && col >= boatLeftCol && col < (boatLeftCol + boatSize) then
+      hit = hit.concat(Sequence.apply((row, col)))
       if hit.lenght() == boatSize then
         Result.WON
       else Result.HIT
